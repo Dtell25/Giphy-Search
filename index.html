@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ghiphy Search</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<!-- A3C4tvXZUIiyzX1vtykZbtuOHRsgaB6L -->
+
+<body>
+
+
+<div class = 'container-fluid'>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="animal-buttons"></div><br>
+        </div>
+    </div>    
+    
+    
+    <div class="row">
+        <div class= 'col-lg-8'>
+        <div id="animal-div"></div>
+        </div>
+        <div class= 'col-lg-4'>
+            <form id="animal-form">
+
+                    <!-- Label for Text Box -->
+                <label for="animal-input">Add an Animal</label><br>
+            
+                <!-- Text Input Box -->
+                <input type="text" id="animal-input"><br>
+            
+                <!-- Submit Button -->
+                <input id="select-animal" type="submit" value="Submit">
+            </form>
+        </div>   
+    </div>     <!-- Artist Information -->
+</div>
+
+
+
+
+     
+              
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <button id="cat-button">magical Elephant button</button>
+  <div id="images">
+  </div>
+ 
+  <script>
+    // this is cat button
+    // when we click on cat button trigger code inside function 
+    $("#cat-button").on("click", function() {
+
+      // this make the api url a variable
+      // url used to hit the API and get results back
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=elephants";
+
+      // this calls/gets the information from the api source 
+      // ajax call to hit the url above and "GET" the content stored there
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+      // this fuction only runs after the data is recvieve from the api and basically calls the function
+        .then(function(response) {
+
+        //  varibale sotrin the url  o the image 
+          var imageUrl = response.data.image_original_url;
+
+          //  making a brand new image element 
+          var catImage = $("<img>");
+
+          // add src and alt
+          catImage.attr("src", imageUrl);
+          catImage.attr("alt", "cat image");
+
+          //adding new crazy cat image to top of #images 
+          $("#images").prepend(catImage);
+        });
+    });
+  </script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+  
+</body>
+
+</html>
